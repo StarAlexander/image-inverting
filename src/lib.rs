@@ -16,12 +16,18 @@ pub fn img_from_base(s:&str) -> DynamicImage {
 }
 
 #[wasm_bindgen]
-pub fn invert(base_string:&str) -> String {
+pub fn invert(base_string:&str,f:&str) -> String {
     let mut img = img_from_base(base_string);
 
     imageops::invert(&mut img);
     let mut buf = vec![];
-    img.write_to(&mut Cursor::new(&mut buf), image::ImageOutputFormat::Jpeg(100)).unwrap();
+    match f {
+        "jpg" => img.write_to(&mut Cursor::new(&mut buf), image::ImageOutputFormat::Jpeg(100)).unwrap(),
+        "png" => img.write_to(&mut Cursor::new(&mut buf), image::ImageOutputFormat::Png).unwrap(),
+        _ => {
+            return "Error".to_string();
+        }
+    }
     let res = general_purpose::STANDARD.encode(&buf);
     res
 }
