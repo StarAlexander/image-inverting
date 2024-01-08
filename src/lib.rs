@@ -32,22 +32,8 @@ pub fn invert(base_string:&str,f:&str) -> String {
     res
 }
 
-#[wasm_bindgen]
-pub fn resize(base_string:&str,width:u32,height:u32) -> String {
-    let mut img = img_from_base(base_string);
-
-    let img_buf = imageops::resize(&mut img,width,height, imageops::FilterType::Triangle );
-    
-    let mut buf = vec![];
-    img_buf.write_to(&mut Cursor::new(&mut buf), image::ImageOutputFormat::Jpeg(100)).unwrap();
-
-    general_purpose::STANDARD.encode(&buf)
-}
 
 
-#[wasm_bindgen]
-pub fn return_three() -> i32 {
-    3
-}
+
 
 
