@@ -44,7 +44,8 @@ export default function App(){
                             <input onChange={setImage} type="file" className="overflow-hidden w-0"/>
                             Choose
                         </label>
-                        <button disabled = {imageData?false:true} onClick={invertData} className="rounded-sm p-2 hover:bg-slate-900 hover:text-white transition-all shadow-sm shadow-slate-300 bg-slate-100">Invert</button>
+                        <button  onClick={()=>setImageData('')} className={` ${imageData?'':'hidden'} rounded-sm p-2 hover:bg-slate-900 hover:text-white transition-all shadow-sm shadow-slate-300 bg-slate-100`}>Clear</button>
+                        <button  onClick={invertData} className={` ${imageData?'':'hidden'} rounded-sm p-2 hover:bg-slate-900 hover:text-white transition-all shadow-sm shadow-slate-300 bg-slate-100`}>Invert</button>
                 </div>
                 <div className={`max-w-md mx-auto mt-8 w-96 h-64 ${imageData?'':'shadow-md border'} `}>
                     <img src={imageData} download = "new-image.jpg" alt="There is no picture yet" className={`object-cover ${imageData?'':'hidden'}`}/>
