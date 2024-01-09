@@ -24,6 +24,7 @@ pub fn invert(base_string:&str,f:&str) -> String {
     match f {
         "jpg" => img.write_to(&mut Cursor::new(&mut buf), image::ImageOutputFormat::Jpeg(100)).unwrap(),
         "png" => img.write_to(&mut Cursor::new(&mut buf), image::ImageOutputFormat::Png).unwrap(),
+        "bmp" => img.write_to(&mut Cursor::new(&mut buf), image::ImageOutputFormat::Bmp).unwrap(),
         _ => {
             return "Error".to_string();
         }
